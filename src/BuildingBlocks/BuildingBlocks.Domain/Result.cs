@@ -22,12 +22,14 @@ namespace BuildingBlocks.Domain
         {
             if (isSuccess && error != Error.None)
             {
-                throw new InvalidOperationException("Başarılı sonuç hata içeremez.");
+                throw new InvalidOperationException(
+                    "Başarılı sonuç hata içeremez. / A successful result cannot contain an error.");
             }
 
             if (!isSuccess && error == Error.None)
             {
-                throw new InvalidOperationException("Başarısız sonuç bir hata içermelidir.");
+                throw new InvalidOperationException(
+                    "Başarısız sonuç bir hata içermelidir. / A failed result must contain an error.");
             }
 
             IsSuccess = isSuccess;
@@ -59,5 +61,4 @@ namespace BuildingBlocks.Domain
         // Veri içermeyen başarısız sonuç üretir
         public static new Result<T> Failure(Error error) => new(default!, false, error);
     }
-    // senin için süpriz
 }

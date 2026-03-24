@@ -1,0 +1,142 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "BuildingBlocks.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/BuildingBlocks.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BuildingBlocks.Domain.dll": {}
+        }
+      },
+      "Product.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Product.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Product.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Product.Application.dll": {}
+        }
+      },
+      "Product.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "BuildingBlocks.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Product.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Product.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BuildingBlocks.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../../BuildingBlocks/BuildingBlocks.Domain/BuildingBlocks.Domain.csproj",
+      "msbuildProject": "../../../BuildingBlocks/BuildingBlocks.Domain/BuildingBlocks.Domain.csproj"
+    },
+    "Product.Application/1.0.0": {
+      "type": "project",
+      "path": "../Product.Application/Product.Application.csproj",
+      "msbuildProject": "../Product.Application/Product.Application.csproj"
+    },
+    "Product.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Product.Domain/Product.Domain.csproj",
+      "msbuildProject": "../Product.Domain/Product.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "Product.Application >= 1.0.0",
+      "Product.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\sakir.kilic\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Infrastructure\\Product.Infrastructure.csproj",
+      "projectName": "Product.Infrastructure",
+      "projectPath": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Infrastructure\\Product.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\sakir.kilic\\.nuget\\packages\\",
+      "outputPath": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Infrastructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\sakir.kilic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\Product.Application.csproj": {
+              "projectPath": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\Product.Application.csproj"
+            },
+            "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj": {
+              "projectPath": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

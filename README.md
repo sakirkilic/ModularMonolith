@@ -23,6 +23,33 @@ Bu repository, eğitim amaçlı ama production mantığıyla geliştirilen bir M
 - Modüller birbirine doğrudan bağımlı değildir
 - Microservice’e geçiş için uygun yapı
 
+### Clean Architecture (modül içinde)
+
+Her modül kendi içinde katmanlara ayrılır:
+
+- Domain
+- Application
+- Infrastructure
+- API
+
+Bu sayede her modül kendi mini bounded context’i gibi davranır.
+
+### DDD-lite
+
+Tam ağır DDD yerine, öğrenme ve production dengesi gözetilerek:
+
+- Aggregate Root
+- Value Object
+- Domain Event
+- Entity taban yapıları
+- Modül bazlı error catalog yaklaşımı
+
+uygulanır.
+
+### CQRS ve Event-Driven
+
+Henüz uygulanmadı, ama mimari bu yapılara uygun hazırlanıyor.
+
 ---
 
 ## 📁 Proje Yapısı
@@ -31,13 +58,17 @@ Bu repository, eğitim amaçlı ama production mantığıyla geliştirilen bir M
 ModularMonolith/
  ├── src/
  │   ├── BuildingBlocks/
- │   │     └── BuildingBlocks.Domain
+ │   │   └── BuildingBlocks.Domain/
  │   ├── Modules/
- │   │     └── Product/
- │   │         ├── Product.Domain
- │   │         ├── Product.Application
- │   │         ├── Product.Infrastructure
- │   │         ├── Product.API
- │   ├── API/
+ │   │   └── Product/
+ │   │       ├── Product.Domain/
+ │   │       │   ├── Entities/
+ │   │       │   ├── Errors/
+ │   │       │   ├── Events/
+ │   │       │   └── ValueObjects/
+ │   │       ├── Product.Application/
+ │   │       ├── Product.Infrastructure/
+ │   │       └── Product.API/
+ │   └── API/
  ├── ModularMonolith.sln
- ├── README.md
+ └── README.md
