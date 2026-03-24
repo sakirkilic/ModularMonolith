@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Dev\\ModularMonolith\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FB9298FB-FD7C-4A4B-B815-F25227642326}|src\\Modules\\Product\\Product.API\\Product.API.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB9298FB-FD7C-4A4B-B815-F25227642326}|src\\Modules\\Product\\Product.API\\Product.API.csproj|solutionrelative:src\\modules\\product\\product.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF464341-94C7-412F-873B-A36EE5ED979E}|src\\Modules\\Product\\Product.Application\\Product.Application.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF464341-94C7-412F-873B-A36EE5ED979E}|src\\Modules\\Product\\Product.Application\\Product.Application.csproj|solutionrelative:src\\modules\\product\\product.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB9298FB-FD7C-4A4B-B815-F25227642326}|src\\Modules\\Product\\Product.API\\Product.API.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB9298FB-FD7C-4A4B-B815-F25227642326}|src\\Modules\\Product\\Product.API\\Product.API.csproj|solutionrelative:src\\modules\\product\\product.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF464341-94C7-412F-873B-A36EE5ED979E}|src\\Modules\\Product\\Product.Application\\Product.Application.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.application\\features\\products\\createproduct\\createproducthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,19 +39,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.API\\Program.cs",
+              "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.API\\Program.cs",
+              "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.API\\Program.cs",
+              "RelativeToolTip": "src\\Modules\\Product\\Product.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T13:16:18.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.API\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.API\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.API\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "src\\Modules\\Product\\Product.API\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T13:15:43.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Application\\DependencyInjection.cs",
               "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\DependencyInjection.cs",
               "RelativeToolTip": "src\\Modules\\Product\\Product.Application\\DependencyInjection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T13:05:13.763Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
@@ -55,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CreateProductHandler.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductHandler.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductHandler.cs",
@@ -63,12 +97,11 @@
               "RelativeToolTip": "src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T11:50:46.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T11:50:46.841Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CreateProductCommand.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductCommand.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductCommand.cs",
@@ -76,8 +109,7 @@
               "RelativeToolTip": "src\\Modules\\Product\\Product.Application\\Features\\Products\\CreateProduct\\CreateProductCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T11:50:36.95Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T11:50:36.95Z"
             }
           ]
         }
