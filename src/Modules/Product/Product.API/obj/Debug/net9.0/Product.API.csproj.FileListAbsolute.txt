@@ -40,3 +40,13 @@ C:\Dev\ModularMonolith\src\Modules\Product\Product.API\obj\Debug\net9.0\refint\P
 C:\Dev\ModularMonolith\src\Modules\Product\Product.API\obj\Debug\net9.0\Product.API.pdb
 C:\Dev\ModularMonolith\src\Modules\Product\Product.API\obj\Debug\net9.0\Product.API.genruntimeconfig.cache
 C:\Dev\ModularMonolith\src\Modules\Product\Product.API\obj\Debug\net9.0\ref\Product.API.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\MediatR.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\MediatR.Contracts.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Dev\ModularMonolith\src\Modules\Product\Product.API\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll

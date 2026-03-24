@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BuildingBlocks.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b49304e94bd3ba645876a3047c3db93daf867878")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26596ff1a5dba0c66b6374db5c0ccd152f958bb0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BuildingBlocks.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BuildingBlocks.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
