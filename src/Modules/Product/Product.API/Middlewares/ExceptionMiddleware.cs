@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using FluentValidation;
+using System.Net;
 using System.Text.Json;
 
 namespace Product.API.Middlewares
@@ -32,6 +33,11 @@ namespace Product.API.Middlewares
             context.Response.ContentType = "application/json";
 
             var statusCode = HttpStatusCode.InternalServerError;
+
+            if (exception is ValidationException)
+            {
+                statusCode = HttpStatusCode.BadRequest;
+            }
 
             var response = new
             {
