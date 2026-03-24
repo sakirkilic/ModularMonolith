@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Product.Application
 {
@@ -12,6 +13,8 @@ namespace Product.Application
             {
                 cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
             });
+
+            services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
             return services;
         }
