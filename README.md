@@ -21,6 +21,7 @@ Bu repository, eğitim amaçlı ama production mantığıyla geliştirilen bir M
 - Modül bazlı ayrım
 - Her modül kendi sınırına sahip
 - Modüller birbirine doğrudan bağımlı değildir
+- Microservice’e geçiş için uygun yapı
 
 ---
 
@@ -32,6 +33,11 @@ ModularMonolith/
  │   ├── BuildingBlocks/
  │   │     └── BuildingBlocks.Domain
  │   ├── Modules/
+ │   │     └── Product/
+ │   │         ├── Product.Domain
+ │   │         ├── Product.Application
+ │   │         ├── Product.Infrastructure
+ │   │         ├── Product.API
  │   ├── API/
  ├── ModularMonolith.sln
  ├── README.md
