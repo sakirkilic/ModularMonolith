@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Dev\\ModularMonolith\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3DC82FA1-BF6E-41AC-A5A1-83A56331D4F6}|src\\BuildingBlocks\\BuildingBlocks.Domain\\BuildingBlocks.Domain.csproj|c:\\dev\\modularmonolith\\src\\buildingblocks\\buildingblocks.domain\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DC82FA1-BF6E-41AC-A5A1-83A56331D4F6}|src\\BuildingBlocks\\BuildingBlocks.Domain\\BuildingBlocks.Domain.csproj|solutionrelative:src\\buildingblocks\\buildingblocks.domain\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Result.cs",
+              "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\BuildingBlocks\\BuildingBlocks.Domain\\Result.cs",
+              "RelativeDocumentMoniker": "src\\BuildingBlocks\\BuildingBlocks.Domain\\Result.cs",
+              "ToolTip": "C:\\Dev\\ModularMonolith\\src\\BuildingBlocks\\BuildingBlocks.Domain\\Result.cs",
+              "RelativeToolTip": "src\\BuildingBlocks\\BuildingBlocks.Domain\\Result.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAgwDgAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T08:57:10.178Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

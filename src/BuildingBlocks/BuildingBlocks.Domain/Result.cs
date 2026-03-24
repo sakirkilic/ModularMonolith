@@ -59,4 +59,5 @@ namespace BuildingBlocks.Domain
         // Veri içermeyen başarısız sonuç üretir
         public static new Result<T> Failure(Error error) => new(default!, false, error);
     }
+    // senin için süpriz
 }
