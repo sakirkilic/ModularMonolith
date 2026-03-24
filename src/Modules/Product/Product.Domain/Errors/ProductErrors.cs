@@ -7,15 +7,19 @@ using System.Threading.Tasks;
 
 namespace Product.Domain.Errors
 {
-    // Product modülüne ait domain hataları
+    // Product domain hatalarını merkezi olarak tutar
     public static class ProductErrors
     {
-        public static readonly Error NameEmpty = new(
-            "Product.Name.Empty",
-            "Ürün adı boş olamaz. / Product name cannot be empty.");
+        // Ürün adı boş olamaz
+        public static readonly Error NameEmpty =
+            new("Product.NameEmpty", "Ürün adı boş olamaz.");
 
-        public static readonly Error NameTooLong = new(
-            "Product.Name.TooLong",
-            "Ürün adı 200 karakterden uzun olamaz. / Product name cannot be longer than 200 characters.");
+        // Ürün fiyatı sıfırdan büyük olmalıdır
+        public static readonly Error PriceMustBeGreaterThanZero =
+            new("Product.PriceMustBeGreaterThanZero", "Ürün fiyatı sıfırdan büyük olmalıdır.");
+
+        // Stok miktarı negatif olamaz
+        public static readonly Error StockCannotBeNegative =
+            new("Product.StockCannotBeNegative", "Stok miktarı negatif olamaz.");
     }
 }

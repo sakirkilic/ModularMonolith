@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Dev\\ModularMonolith\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|solutionrelative:src\\modules\\product\\product.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.domain\\events\\productcreateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|solutionrelative:src\\modules\\product\\product.domain\\events\\productcreateddomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|solutionrelative:src\\modules\\product\\product.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0491A500-3C71-42F0-96DE-62D548DC00F1}|src\\Modules\\Product\\Product.Domain\\Product.Domain.csproj|c:\\dev\\modularmonolith\\src\\modules\\product\\product.domain\\errors\\producterrors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -40,33 +40,33 @@
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Domain\\Errors\\ProductErrors.cs",
               "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Errors\\ProductErrors.cs",
               "RelativeToolTip": "src\\Modules\\Product\\Product.Domain\\Errors\\ProductErrors.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T10:45:53.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
               "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
               "RelativeToolTip": "src\\Modules\\Product\\Product.Domain\\Entities\\Product.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAswEYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAADwvz8AAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T10:41:48.457Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ProductCreatedDomainEvent.cs",
               "DocumentMoniker": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Events\\ProductCreatedDomainEvent.cs",
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Domain\\Events\\ProductCreatedDomainEvent.cs",
               "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\Events\\ProductCreatedDomainEvent.cs",
               "RelativeToolTip": "src\\Modules\\Product\\Product.Domain\\Events\\ProductCreatedDomainEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T09:27:42.887Z",
               "EditorCaption": ""
@@ -79,7 +79,7 @@
               "RelativeDocumentMoniker": "src\\Modules\\Product\\Product.Domain\\ValueObjects\\ProductId.cs",
               "ToolTip": "C:\\Dev\\ModularMonolith\\src\\Modules\\Product\\Product.Domain\\ValueObjects\\ProductId.cs",
               "RelativeToolTip": "src\\Modules\\Product\\Product.Domain\\ValueObjects\\ProductId.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAswCgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA9wBIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T09:27:21.302Z",
               "EditorCaption": ""
@@ -94,8 +94,7 @@
               "RelativeToolTip": "src\\BuildingBlocks\\BuildingBlocks.Domain\\Result.cs",
               "ViewState": "AgIAACYAAAAAAAAAAADwvxYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T08:57:10.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T08:57:10.178Z"
             }
           ]
         }

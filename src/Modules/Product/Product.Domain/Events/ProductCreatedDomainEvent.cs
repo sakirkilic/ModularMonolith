@@ -3,12 +3,13 @@ using Product.Domain.ValueObjects;
 
 namespace Product.Domain.Events
 {
-    // Product oluşturulduğunda tetiklenir
+    // Yeni ürün oluşturulduğunda tetiklenen domain event
     public sealed class ProductCreatedDomainEvent : DomainEvent
     {
-        public ProductId ProductId { get; }
+        // Oluşturulan ürünün kimliği
+        public Guid ProductId { get; }
 
-        public ProductCreatedDomainEvent(ProductId productId)
+        public ProductCreatedDomainEvent(Guid productId)
         {
             ProductId = productId;
         }

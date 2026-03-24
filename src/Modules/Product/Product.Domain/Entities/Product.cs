@@ -10,62 +10,95 @@ using System.Threading.Tasks;
 
 namespace Product.Domain.Entities
 {
-    // Product modülünün aggregate root'u
+    // Ürün aggregate root entity'si
     public sealed class Product : BaseEntity, IAggregateRoot
     {
-        public ProductId Id { get; private set; } = default!;
-        public string Name { get; private set; } = string.Empty;
+        // Ürün adı
+        public string Name { get; private set; }
 
+        // Ürün fiyatı
+        public decimal Price { get; private set; }
+
+        // Stok miktarı
+        public int StockQuantity { get; private set; }
+
+        // EF Core için boş constructor
         private Product()
         {
+            Name = string.Empty;
         }
 
-        private Product(ProductId id, string name)
+        // Entity oluşturmak için private constructor
+        private Product(Guid id, string name, decimal price, int stockQuantity)
         {
             Id = id;
             Name = name;
+            Price = price;
+            StockQuantity = stockQuantity;
         }
 
-        public static Result<Product> Create(string name)
+        // Yeni ürün oluşturur
+        public static Result<Product> Create(string name, decimal price, int stockQuantity)
         {
-            var validationResult = ValidateName(name);
-            if (validationResult.IsFailure)
+            if (string.IsNullOrWhiteSpace(name))
             {
-                return Result<Product>.Failure(validationResult.Error);
+                return Result<Product>.Failure(ProductErrors.NameEmpty);
             }
 
-            var product = new Product(ProductId.New(), name.Trim());
+            if (price <= 0)
+            {
+                return Result<Product>.Failure(ProductErrors.PriceMustBeGreaterThanZero);
+            }
+
+            if (stockQuantity < 0)
+            {
+                return Result<Product>.Failure(ProductErrors.StockCannotBeNegative);
+            }
+
+            var product = new Product(
+                Guid.NewGuid(),
+                name.Trim(),
+                price,
+                stockQuantity);
 
             product.AddDomainEvent(new ProductCreatedDomainEvent(product.Id));
 
             return Result<Product>.Success(product);
         }
 
-        public Result Rename(string name)
-        {
-            var validationResult = ValidateName(name);
-            if (validationResult.IsFailure)
-            {
-                return validationResult;
-            }
-
-            Name = name.Trim();
-
-            return Result.Success();
-        }
-
-        private static Result ValidateName(string name)
+        // Ürün adını günceller
+        public Result ChangeName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
                 return Result.Failure(ProductErrors.NameEmpty);
             }
 
-            if (name.Trim().Length > 200)
+            Name = name.Trim();
+            return Result.Success();
+        }
+
+        // Ürün fiyatını günceller
+        public Result ChangePrice(decimal price)
+        {
+            if (price <= 0)
             {
-                return Result.Failure(ProductErrors.NameTooLong);
+                return Result.Failure(ProductErrors.PriceMustBeGreaterThanZero);
             }
 
+            Price = price;
+            return Result.Success();
+        }
+
+        // Stok miktarını günceller
+        public Result UpdateStock(int stockQuantity)
+        {
+            if (stockQuantity < 0)
+            {
+                return Result.Failure(ProductErrors.StockCannotBeNegative);
+            }
+
+            StockQuantity = stockQuantity;
             return Result.Success();
         }
     }
