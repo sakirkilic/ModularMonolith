@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Product.API.Contracts.Requests;
 using Product.Application.Features.Products.CreateProduct;
 
 namespace Product.API.Controllers
@@ -11,7 +12,6 @@ namespace Product.API.Controllers
     {
         private readonly ISender _sender;
 
-        // MediatR üzerinden handler çağırmak için
         public ProductsController(ISender sender)
         {
             _sender = sender;
@@ -19,8 +19,13 @@ namespace Product.API.Controllers
 
         // Yeni ürün oluşturur
         [HttpPost]
-        public async Task<IActionResult> Create(CreateProductCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
+            var command = new CreateProductCommand(
+                request.Name,
+                request.Price,
+                request.StockQuantity);
+
             var productId = await _sender.Send(command);
 
             return Ok(productId);
