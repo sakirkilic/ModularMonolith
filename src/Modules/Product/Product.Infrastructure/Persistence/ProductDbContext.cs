@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Product.Infrastructure
+namespace Product.Infrastructure.Persistence
 {
     // Product modülünün veritabanı erişim katmanı
     public sealed class ProductDbContext : DbContext

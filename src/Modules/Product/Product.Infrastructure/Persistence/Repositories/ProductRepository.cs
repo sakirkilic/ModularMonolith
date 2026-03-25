@@ -1,6 +1,6 @@
 ﻿using Product.Application.Abstractions.Data;
 
-namespace Product.Infrastructure.Repositories
+namespace Product.Infrastructure.Persistence.Repositories
 {
     // Product repository sözleşmesinin EF Core implementasyonu
     public sealed class ProductRepository : IProductRepository

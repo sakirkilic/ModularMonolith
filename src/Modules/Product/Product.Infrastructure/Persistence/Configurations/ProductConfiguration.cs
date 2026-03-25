@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Product.Infrastructure.Configurations
+namespace Product.Infrastructure.Persistence.Configurations
 {
     // Product entity'sinin veritabanı eşlemesini yapar
     public sealed class ProductConfiguration : IEntityTypeConfiguration<Product.Domain.Entities.Product>
@@ -17,7 +17,7 @@ namespace Product.Infrastructure.Configurations
                 .HasMaxLength(200);
 
             builder.Property(x => x.Price)
-                .HasColumnType("numeric(18,2)");
+                .HasColumnType("decimal(18,2)");
 
             builder.Property(x => x.StockQuantity)
                 .IsRequired();

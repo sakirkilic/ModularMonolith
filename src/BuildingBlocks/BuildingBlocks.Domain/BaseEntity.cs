@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,8 @@ namespace BuildingBlocks.Domain
         // Entity'nin benzersiz kimliği
         public Guid Id { get; protected set; }
 
-        // Domain event'leri dışarıya sadece okunabilir olarak verir
+        // Domain event'leri dışarıya readonly verir (DB'ye yazılmaz)
+        [NotMapped]
         public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         // Yeni bir domain event ekler
