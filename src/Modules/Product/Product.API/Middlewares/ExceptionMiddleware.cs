@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BuildingBlocks.Domain.Exceptions;
+using FluentValidation;
 using System.Net;
 using System.Text.Json;
 
@@ -23,12 +24,12 @@ namespace Product.API.Middlewares
             }
             catch (Exception ex)
             {
-                await HandleException(context, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        // Exception'ı HTTP response'a çevirir
-        private static async Task HandleException(HttpContext context, Exception exception)
+        // Exception'ı uygun HTTP response'a çevirir
+        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
 
@@ -38,9 +39,18 @@ namespace Product.API.Middlewares
             {
                 statusCode = HttpStatusCode.BadRequest;
             }
+            else if (exception is BusinessRuleException)
+            {
+                statusCode = HttpStatusCode.BadRequest;
+            }
+            else if (exception is NotFoundException)
+            {
+                statusCode = HttpStatusCode.NotFound;
+            }
 
             var response = new
             {
+                statusCode = (int)statusCode,
                 message = exception.Message
             };
 

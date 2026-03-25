@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using BuildingBlocks.Domain.Exceptions;
+using MediatR;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.GetProductById
@@ -20,7 +21,7 @@ namespace Product.Application.Features.Products.GetProductById
 
             if (product is null)
             {
-                throw new InvalidOperationException("Ürün bulunamadı.");
+                throw new NotFoundException("Ürün bulunamadı.");
             }
 
             return new ProductResponse(

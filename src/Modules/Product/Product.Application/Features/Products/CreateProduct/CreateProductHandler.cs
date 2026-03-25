@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using BuildingBlocks.Domain.Exceptions;
+using MediatR;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.CreateProduct
@@ -24,7 +25,7 @@ namespace Product.Application.Features.Products.CreateProduct
 
             if (result.IsFailure)
             {
-                throw new Exception(result.Error.Message);
+                throw new BusinessRuleException(result.Error.Message);
             }
             var product = result.Value;
 
