@@ -1,4 +1,5 @@
-﻿using Product.Application.Abstractions.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Product.Application.Abstractions.Data;
 
 namespace Product.Infrastructure.Persistence.Repositories
 {
@@ -17,6 +18,14 @@ namespace Product.Infrastructure.Persistence.Repositories
         {
             await _dbContext.Products.AddAsync(product, cancellationToken);
         }
+
+
+        // Id'ye göre ürünü veritabanından getirir
+        public async Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+
 
         // Bekleyen değişiklikleri veritabanına yazar
         public async Task SaveChangesAsync(CancellationToken cancellationToken)

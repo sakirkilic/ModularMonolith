@@ -12,6 +12,9 @@ namespace Product.Application.Abstractions.Data
         // Yeni ürünü ekler
         Task AddAsync(Product.Domain.Entities.Product product, CancellationToken cancellationToken);
 
+        // Id'ye göre ürünü getirir
+        Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+
         // Değişiklikleri veritabanına yazar
         Task SaveChangesAsync(CancellationToken cancellationToken);
     }
