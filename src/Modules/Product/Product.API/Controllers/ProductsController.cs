@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Product.API.Contracts.Requests;
 using Product.Application.Features.Products.CreateProduct;
+using Product.Application.Features.Products.GetAllProducts;
 using Product.Application.Features.Products.GetProductById;
 
 namespace Product.API.Controllers
@@ -18,6 +19,28 @@ namespace Product.API.Controllers
             _sender = sender;
         }
 
+        // Tüm ürünleri getirir
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var query = new GetAllProductsQuery();
+
+            var products = await _sender.Send(query);
+
+            return Ok(products);
+        }
+
+        // Id'ye göre ürün getirir
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetProductByIdQuery(id);
+
+            var product = await _sender.Send(query);
+
+            return Ok(product);
+        }
+
         // Yeni ürün oluşturur
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
@@ -30,17 +53,6 @@ namespace Product.API.Controllers
             var productId = await _sender.Send(command);
 
             return Ok(productId);
-        }
-
-        // Id'ye göre ürün getirir
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var query = new GetProductByIdQuery(id);
-
-            var product = await _sender.Send(query);
-
-            return Ok(product);
         }
     }
 }

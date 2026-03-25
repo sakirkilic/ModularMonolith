@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Product.Application.Abstractions.Data
+﻿namespace Product.Application.Abstractions.Data
 {
     // Product verileri için repository sözleşmesi
     public interface IProductRepository
@@ -14,6 +8,9 @@ namespace Product.Application.Abstractions.Data
 
         // Id'ye göre ürünü getirir
         Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+
+        // tüm ürünleri getirir
+        Task<List<Product.Domain.Entities.Product>> GetAllAsync(CancellationToken cancellationToken);
 
         // Değişiklikleri veritabanına yazar
         Task SaveChangesAsync(CancellationToken cancellationToken);

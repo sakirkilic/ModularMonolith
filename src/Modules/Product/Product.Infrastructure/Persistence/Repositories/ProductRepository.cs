@@ -19,13 +19,20 @@ namespace Product.Infrastructure.Persistence.Repositories
             await _dbContext.Products.AddAsync(product, cancellationToken);
         }
 
-
         // Id'ye göre ürünü veritabanından getirir
         public async Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
+        // Tüm ürünleri veritabanından getirir
+        public async Task<List<Product.Domain.Entities.Product>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _dbContext.Products
+                .AsNoTracking()    // Sadece veri okuduğumuzdan performans amaçlı Ef'nin izlemesine gerek yok işaretini bırakıyoruz.
+                .OrderBy(x => x.Name)
+                .ToListAsync(cancellationToken);
+        }
 
         // Bekleyen değişiklikleri veritabanına yazar
         public async Task SaveChangesAsync(CancellationToken cancellationToken)
