@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.CreateProduct
 {
@@ -6,9 +7,15 @@ namespace Product.Application.Features.Products.CreateProduct
     public sealed class CreateProductHandler
         : IRequestHandler<CreateProductCommand, Guid>
     {
-        public Task<Guid> Handle(
-            CreateProductCommand request,
-            CancellationToken cancellationToken)
+        private readonly IProductRepository _productRepository;
+
+        public CreateProductHandler(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
+        // Ürün oluşturma işlemini gerçekleştirir
+        public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var result = Product.Domain.Entities.Product.Create(
                 request.Name,
@@ -19,11 +26,12 @@ namespace Product.Application.Features.Products.CreateProduct
             {
                 throw new Exception(result.Error.Message);
             }
-
             var product = result.Value;
 
-            // Şimdilik sadece Id dönüyoruz (db yok)
-            return Task.FromResult(product.Id);
+            await _productRepository.AddAsync(product, cancellationToken);
+            await _productRepository.SaveChangesAsync(cancellationToken);
+
+            return product.Id;
         }
     }
 }
