@@ -1,10 +1,11 @@
-﻿using MediatR;
+﻿using BuildingBlocks.Domain.Primitives;
+using MediatR;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.GetAllProducts
 {
-    // Tüm ürünleri getirme işlemini yöneten handler
-    public sealed class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, List<ProductListItemResponse>>
+    // Tüm ürünleri sayfalı olarak getirme işlemini yöneten handler
+    public sealed class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, PagedResult<ProductListItemResponse>>
     {
         private readonly IProductRepository _productRepository;
 
@@ -13,20 +14,29 @@ namespace Product.Application.Features.Products.GetAllProducts
             _productRepository = productRepository;
         }
 
-        // Tüm ürünleri veritabanından getirir
-        public async Task<List<ProductListItemResponse>> Handle(
+        // Ürünleri sayfalı şekilde veritabanından getirir
+        public async Task<PagedResult<ProductListItemResponse>> Handle(
             GetAllProductsQuery request,
             CancellationToken cancellationToken)
         {
-            var products = await _productRepository.GetAllAsync(cancellationToken);
+            var (items, totalCount) = await _productRepository.GetPagedAsync(
+                request.Page,
+                request.PageSize,
+                cancellationToken);
 
-            return products
+            var responseItems = items
                 .Select(product => new ProductListItemResponse(
                     product.Id,
                     product.Name,
                     product.Price,
                     product.StockQuantity))
                 .ToList();
+
+            return new PagedResult<ProductListItemResponse>(
+                responseItems,
+                totalCount,
+                request.Page,
+                request.PageSize);
         }
     }
 }

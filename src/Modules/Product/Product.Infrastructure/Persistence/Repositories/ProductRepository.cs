@@ -25,14 +25,27 @@ namespace Product.Infrastructure.Persistence.Repositories
             return await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        // Tüm ürünleri veritabanından getirir
-        public async Task<List<Product.Domain.Entities.Product>> GetAllAsync(CancellationToken cancellationToken)
+        // Sayfalı ürün listesini veritabanından getirir
+        public async Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
+            CancellationToken cancellationToken)
         {
-            return await _dbContext.Products
-                .AsNoTracking()    // Sadece veri okuduğumuzdan performans amaçlı Ef'nin izlemesine gerek yok işaretini bırakıyoruz.
-                .OrderBy(x => x.Name)
+            var query = _dbContext.Products
+                .AsNoTracking()
+                .OrderBy(x => x.Name);
+
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            var items = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync(cancellationToken);
+
+            return (items, totalCount);
         }
+
+
 
         // Bekleyen değişiklikleri veritabanına yazar
         public async Task SaveChangesAsync(CancellationToken cancellationToken)

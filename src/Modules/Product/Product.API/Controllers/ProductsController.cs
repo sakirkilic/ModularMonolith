@@ -19,11 +19,11 @@ namespace Product.API.Controllers
             _sender = sender;
         }
 
-        // Tüm ürünleri getirir
+        // Ürünleri sayfalı olarak getirir
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllProductsRequest request)
         {
-            var query = new GetAllProductsQuery();
+            var query = new GetAllProductsQuery(request.Page, request.PageSize);
 
             var products = await _sender.Send(query);
 

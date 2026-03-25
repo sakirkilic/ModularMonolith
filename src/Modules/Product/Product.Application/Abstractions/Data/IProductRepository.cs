@@ -9,8 +9,11 @@
         // Id'ye göre ürünü getirir
         Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
-        // tüm ürünleri getirir
-        Task<List<Product.Domain.Entities.Product>> GetAllAsync(CancellationToken cancellationToken);
+        // Sayfalı ürün listesini getirir
+        Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
+            CancellationToken cancellationToken);
 
         // Değişiklikleri veritabanına yazar
         Task SaveChangesAsync(CancellationToken cancellationToken);
