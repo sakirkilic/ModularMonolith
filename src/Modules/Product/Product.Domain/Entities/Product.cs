@@ -1,17 +1,11 @@
 ﻿using BuildingBlocks.Domain;
 using Product.Domain.Errors;
 using Product.Domain.Events;
-using Product.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Product.Domain.Entities
 {
     // Ürün aggregate root entity'si
-    public sealed class Product : BaseEntity, IAggregateRoot
+    public sealed class Product : AuditableEntity, IAggregateRoot
     {
         // Ürün adı
         public string Name { get; private set; }

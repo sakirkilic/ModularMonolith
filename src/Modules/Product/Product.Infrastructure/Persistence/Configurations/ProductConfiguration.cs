@@ -21,6 +21,13 @@ namespace Product.Infrastructure.Persistence.Configurations
 
             builder.Property(x => x.StockQuantity)
                 .IsRequired();
+
+            builder.Property(x => x.CreatedAtUtc)
+                .IsRequired();
+
+            builder.Property(x => x.UpdatedAtUtc);
+
+            //builder.Ignore(x => x.DomainEvents); // sınıf içersinde ignor ettik alternatifi burasıdır.
         }
     }
 }
