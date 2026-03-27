@@ -27,6 +27,11 @@ namespace Product.Infrastructure.Persistence.Configurations
 
             builder.Property(x => x.UpdatedAtUtc);
 
+            builder.Property(x => x.IsDeleted)
+                .IsRequired();
+
+            builder.Property(x => x.DeletedAtUtc);
+
             //builder.Ignore(x => x.DomainEvents); // sınıf içersinde ignor ettik alternatifi burasıdır.
         }
     }

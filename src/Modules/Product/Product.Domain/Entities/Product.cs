@@ -95,5 +95,11 @@ namespace Product.Domain.Entities
             StockQuantity = stockQuantity;
             return Result.Success();
         }
+
+        // Ürünü silinmiş olarak işaretler
+        public void Delete()
+        {
+            MarkAsDeleted(DateTime.UtcNow);
+        }
     }
 }

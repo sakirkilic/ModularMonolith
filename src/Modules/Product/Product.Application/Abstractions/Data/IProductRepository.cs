@@ -12,8 +12,6 @@
         // Güncelleme işlemleri için tracked product getirir
         Task<Product.Domain.Entities.Product?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken);
 
-        // Ürünü siler
-        void Remove(Product.Domain.Entities.Product product);
 
         // Sayfalı ürün listesini getirir
         Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(

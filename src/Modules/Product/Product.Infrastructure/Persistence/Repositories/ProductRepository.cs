@@ -19,25 +19,19 @@ namespace Product.Infrastructure.Persistence.Repositories
             await _dbContext.Products.AddAsync(product, cancellationToken);
         }
 
-        // Id'ye göre ürünü veritabanından getirir
+        // Id'ye göre silinmemiş ürünü veritabanından getirir
         public async Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Products
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted, cancellationToken);
         }
 
-        // Güncelleme işlemleri için tracked product getirir
+        // Güncelleme işlemleri için silinmemiş tracked product getirir
         public async Task<Product.Domain.Entities.Product?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Products
-                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-        }
-
-        // Ürünü siler
-        public void Remove(Product.Domain.Entities.Product product)
-        {
-            _dbContext.Products.Remove(product);
+                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted, cancellationToken);
         }
 
         // Sayfalı, filtreli ve sıralı ürün listesini veritabanından getirir
@@ -51,27 +45,25 @@ namespace Product.Infrastructure.Persistence.Repositories
             string? sortDirection,
             CancellationToken cancellationToken)
         {
-            IQueryable<Product.Domain.Entities.Product> query = _dbContext.Products.AsNoTracking();
+            IQueryable<Product.Domain.Entities.Product> query = _dbContext.Products
+                .AsNoTracking()
+                .Where(x => !x.IsDeleted);
 
-            // Arama filtresi
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x => x.Name.Contains(search));
             }
 
-            // Minimum fiyat filtresi
             if (minPrice.HasValue)
             {
                 query = query.Where(x => x.Price >= minPrice.Value);
             }
 
-            // Maksimum fiyat filtresi
             if (maxPrice.HasValue)
             {
                 query = query.Where(x => x.Price <= maxPrice.Value);
             }
 
-            // Sıralama
             query = ApplySorting(query, sortBy, sortDirection);
 
             var totalCount = await query.CountAsync(cancellationToken);

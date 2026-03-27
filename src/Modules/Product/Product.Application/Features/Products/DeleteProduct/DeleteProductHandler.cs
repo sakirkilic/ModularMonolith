@@ -14,7 +14,7 @@ namespace Product.Application.Features.Products.DeleteProduct
             _productRepository = productRepository;
         }
 
-        // Ürünü siler
+        // Ürünü silinmiş olarak işaretler
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetTrackedByIdAsync(request.ProductId, cancellationToken);
@@ -24,7 +24,7 @@ namespace Product.Application.Features.Products.DeleteProduct
                 throw new NotFoundException("Silinecek ürün bulunamadı.");
             }
 
-            _productRepository.Remove(product);
+            product.Delete();
 
             await _productRepository.SaveChangesAsync(cancellationToken);
         }
