@@ -16,6 +16,8 @@
             string? search,
             decimal? minPrice,
             decimal? maxPrice,
+            string? sortBy,
+            string? sortDirection,
             CancellationToken cancellationToken);
 
         // Değişiklikleri veritabanına yazar

@@ -25,6 +25,8 @@ namespace Product.Application.Features.Products.GetAllProducts
                 request.Search,
                 request.MinPrice,
                 request.MaxPrice,
+                request.SortBy,
+                request.SortDirection,
                 cancellationToken);
 
             var responseItems = items

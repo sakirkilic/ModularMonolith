@@ -1,15 +1,13 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Product.Application.Features.Products.GetAllProducts
 {
     // Sayfalı ürün listeleme isteği için doğrulamaları yapar
     public sealed class GetAllProductsQueryValidator : AbstractValidator<GetAllProductsQuery>
     {
+        private static readonly string[] AllowedSortBy = ["name", "price", "stockQuantity"];
+        private static readonly string[] AllowedSortDirections = ["asc", "desc"];
+
         public GetAllProductsQueryValidator()
         {
             RuleFor(x => x.Page)
@@ -33,6 +31,14 @@ namespace Product.Application.Features.Products.GetAllProducts
             RuleFor(x => x)
                 .Must(x => !x.MinPrice.HasValue || !x.MaxPrice.HasValue || x.MinPrice <= x.MaxPrice)
                 .WithMessage("MinPrice, MaxPrice'tan büyük olamaz.");
+
+            RuleFor(x => x.SortBy)
+                .Must(sortBy => string.IsNullOrWhiteSpace(sortBy) || AllowedSortBy.Contains(sortBy))
+                .WithMessage("Geçersiz sıralama alanı.");
+
+            RuleFor(x => x.SortDirection)
+                .Must(direction => string.IsNullOrWhiteSpace(direction) || AllowedSortDirections.Contains(direction.ToLower()))
+                .WithMessage("Geçersiz sıralama yönü.");
         }
     }
 }

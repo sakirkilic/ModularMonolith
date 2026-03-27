@@ -28,7 +28,9 @@ namespace Product.API.Controllers
                 request.PageSize,
                 request.Search,
                 request.MinPrice,
-                request.MaxPrice);
+                request.MaxPrice,
+                request.SortBy,
+                request.SortDirection);
 
             var products = await _sender.Send(query);
 

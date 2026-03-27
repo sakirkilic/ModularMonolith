@@ -9,6 +9,8 @@ namespace Product.Application.Features.Products.GetAllProducts
         int PageSize,
         string? Search,
         decimal? MinPrice,
-        decimal? MaxPrice
+        decimal? MaxPrice,
+        string? SortBy,
+        string? SortDirection
     ) : IRequest<PagedResult<ProductListItemResponse>>;
 }

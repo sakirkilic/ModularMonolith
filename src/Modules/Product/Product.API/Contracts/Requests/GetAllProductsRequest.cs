@@ -1,8 +1,4 @@
-﻿using BuildingBlocks.Domain.Primitives;
-using MediatR;
-using Product.Application.Features.Products.GetAllProducts;
-
-namespace Product.API.Contracts.Requests
+﻿namespace Product.API.Contracts.Requests
 {
 
     // Ürün listeleme API isteğini temsil eder
@@ -11,6 +7,8 @@ namespace Product.API.Contracts.Requests
         int PageSize = 10,
         string? Search = null,
         decimal? MinPrice = null,
-        decimal? MaxPrice = null
+        decimal? MaxPrice = null,
+        string? SortBy = null,
+        string? SortDirection = null
     );
 }
