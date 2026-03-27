@@ -23,7 +23,12 @@ namespace Product.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductsRequest request)
         {
-            var query = new GetAllProductsQuery(request.Page, request.PageSize);
+            var query = new GetAllProductsQuery(
+                request.Page,
+                request.PageSize,
+                request.Search,
+                request.MinPrice,
+                request.MaxPrice);
 
             var products = await _sender.Send(query);
 

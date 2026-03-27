@@ -3,9 +3,12 @@ using MediatR;
 
 namespace Product.Application.Features.Products.GetAllProducts
 {
-    // Sayfalı ürün listeleme isteğini temsil eder
+    // Sayfalı ve filtreli ürün listeleme isteğini temsil eder
     public sealed record GetAllProductsQuery(
         int Page,
-        int PageSize
+        int PageSize,
+        string? Search,
+        decimal? MinPrice,
+        decimal? MaxPrice
     ) : IRequest<PagedResult<ProductListItemResponse>>;
 }

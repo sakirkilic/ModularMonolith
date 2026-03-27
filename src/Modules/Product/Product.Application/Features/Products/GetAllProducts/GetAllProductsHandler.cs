@@ -22,6 +22,9 @@ namespace Product.Application.Features.Products.GetAllProducts
             var (items, totalCount) = await _productRepository.GetPagedAsync(
                 request.Page,
                 request.PageSize,
+                request.Search,
+                request.MinPrice,
+                request.MaxPrice,
                 cancellationToken);
 
             var responseItems = items

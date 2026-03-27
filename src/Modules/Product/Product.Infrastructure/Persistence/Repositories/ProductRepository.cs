@@ -29,11 +29,33 @@ namespace Product.Infrastructure.Persistence.Repositories
         public async Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,
             int pageSize,
+            string? search,
+            decimal? minPrice,
+            decimal? maxPrice,
             CancellationToken cancellationToken)
         {
-            var query = _dbContext.Products
-                .AsNoTracking()
-                .OrderBy(x => x.Name);
+            IQueryable<Product.Domain.Entities.Product> query = _dbContext.Products.AsNoTracking();
+
+            // 🔍 SEARCH
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(x => x.Name.Contains(search));
+            }
+
+            // 💰 MIN PRICE
+            if (minPrice.HasValue)
+            {
+                query = query.Where(x => x.Price >= minPrice.Value);
+            }
+
+            // 💰 MAX PRICE
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(x => x.Price <= maxPrice.Value);
+            }
+
+            // sıralama
+            query = query.OrderBy(x => x.Name);
 
             var totalCount = await query.CountAsync(cancellationToken);
 

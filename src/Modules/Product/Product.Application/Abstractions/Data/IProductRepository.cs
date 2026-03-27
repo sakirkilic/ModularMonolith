@@ -13,6 +13,9 @@
         Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,
             int pageSize,
+            string? search,
+            decimal? minPrice,
+            decimal? maxPrice,
             CancellationToken cancellationToken);
 
         // Değişiklikleri veritabanına yazar
