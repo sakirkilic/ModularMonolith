@@ -34,6 +34,19 @@ namespace Product.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted, cancellationToken);
         }
 
+        // Fiziksel silme işlemleri için tracked product getirir
+        public async Task<Product.Domain.Entities.Product?> GetTrackedByIdIncludingDeletedAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Products
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+
+        // Ürünü fiziksel olarak siler
+        public void HardRemove(Product.Domain.Entities.Product product)
+        {
+            _dbContext.Products.Remove(product);
+        }
+
         // Sayfalı, filtreli ve sıralı ürün listesini veritabanından getirir
         public async Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,

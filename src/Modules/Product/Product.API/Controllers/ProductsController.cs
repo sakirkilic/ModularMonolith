@@ -5,6 +5,7 @@ using Product.Application.Features.Products.CreateProduct;
 using Product.Application.Features.Products.DeleteProduct;
 using Product.Application.Features.Products.GetAllProducts;
 using Product.Application.Features.Products.GetProductById;
+using Product.Application.Features.Products.HardDeleteProduct;
 using Product.Application.Features.Products.UpdateProduct;
 
 namespace Product.API.Controllers
@@ -68,7 +69,7 @@ namespace Product.API.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request)
         {
-            var command = new UpdateProductCommand( 
+            var command = new UpdateProductCommand(
                 id,
                 request.Name,
                 request.Price,
@@ -79,11 +80,22 @@ namespace Product.API.Controllers
             return NoContent();
         }
 
-        // Mevcut ürünü siler
+        // Mevcut ürünü silinmiş olarak işaretler
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteProductCommand(id);
+
+            await _sender.Send(command);
+
+            return NoContent();
+        }
+
+        // Mevcut ürünü fiziksel olarak siler
+        [HttpDelete("{id:guid}/hard")]
+        public async Task<IActionResult> HardDelete(Guid id)
+        {
+            var command = new HardDeleteProductCommand(id);
 
             await _sender.Send(command);
 
