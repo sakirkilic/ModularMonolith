@@ -1,8 +1,24 @@
 using Product.API.Middlewares;
 using Product.Application;
 using Product.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog konfigürasyonu
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console(
+        outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
+    .WriteTo.File(
+        "logs/log-.txt",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 7)
+    .CreateLogger();
+
+// .NET logging yerine Serilog kullan
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
