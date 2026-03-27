@@ -9,6 +9,9 @@
         // Id'ye göre ürünü getirir
         Task<Product.Domain.Entities.Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
+        // Güncelleme işlemleri için tracked product getirir
+        Task<Product.Domain.Entities.Product?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken);
+
         // Sayfalı ürün listesini getirir
         Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,

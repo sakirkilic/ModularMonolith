@@ -4,6 +4,7 @@ using Product.API.Contracts.Requests;
 using Product.Application.Features.Products.CreateProduct;
 using Product.Application.Features.Products.GetAllProducts;
 using Product.Application.Features.Products.GetProductById;
+using Product.Application.Features.Products.UpdateProduct;
 
 namespace Product.API.Controllers
 {
@@ -60,6 +61,21 @@ namespace Product.API.Controllers
             var productId = await _sender.Send(command);
 
             return Ok(productId);
+        }
+
+        // Mevcut ürünü günceller
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request)
+        {
+            var command = new UpdateProductCommand( 
+                id,
+                request.Name,
+                request.Price,
+                request.StockQuantity);
+
+            await _sender.Send(command);
+
+            return NoContent();
         }
     }
 }

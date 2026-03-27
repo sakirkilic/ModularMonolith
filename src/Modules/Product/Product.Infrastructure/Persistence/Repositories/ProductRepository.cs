@@ -27,6 +27,13 @@ namespace Product.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
+        // Güncelleme işlemleri için tracked product getirir
+        public async Task<Product.Domain.Entities.Product?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Products
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+
         // Sayfalı, filtreli ve sıralı ürün listesini veritabanından getirir
         public async Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,
