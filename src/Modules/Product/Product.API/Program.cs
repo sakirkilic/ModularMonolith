@@ -1,3 +1,4 @@
+using Product.API.Middlewares;
 using Product.Application;
 using Product.Infrastructure;
 
@@ -19,7 +20,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<Product.API.Middlewares.ExceptionMiddleware>();
+// Request loglama middleware'i
+app.UseMiddleware<RequestLoggingMiddleware>();
+
+// Exception middleware'i
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

@@ -9,10 +9,14 @@ namespace Product.API.Middlewares
     public sealed class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(
+            RequestDelegate next,
+            ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         // Pipeline içinde çalışır
@@ -29,7 +33,7 @@ namespace Product.API.Middlewares
         }
 
         // Exception'ı uygun HTTP response'a çevirir
-        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
 
@@ -48,6 +52,8 @@ namespace Product.API.Middlewares
                 statusCode = HttpStatusCode.NotFound;
             }
 
+            LogException(context, exception, statusCode);
+
             var response = new
             {
                 statusCode = (int)statusCode,
@@ -60,5 +66,32 @@ namespace Product.API.Middlewares
 
             await context.Response.WriteAsync(json);
         }
+
+        // Exception detaylarını loglar
+        private void LogException(HttpContext context, Exception exception, HttpStatusCode statusCode)
+        {
+            var method = context.Request.Method;
+            var path = context.Request.Path;
+
+            if (statusCode == HttpStatusCode.InternalServerError)
+            {
+                _logger.LogError(
+                    exception,
+                    "Beklenmeyen hata oluştu. Method: {Method}, Path: {Path}, StatusCode: {StatusCode}",
+                    method,
+                    path,
+                    (int)statusCode);
+                return;
+            }
+
+            _logger.LogWarning(
+                exception,
+                "İşlemsel hata oluştu. Method: {Method}, Path: {Path}, StatusCode: {StatusCode}, Message: {Message}",
+                method,
+                path,
+                (int)statusCode,
+                exception.Message);
+        }
+
     }
 }
