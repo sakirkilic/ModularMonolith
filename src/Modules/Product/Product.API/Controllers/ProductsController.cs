@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Product.API.Contracts.Requests;
 using Product.Application.Features.Products.CreateProduct;
+using Product.Application.Features.Products.DeleteProduct;
 using Product.Application.Features.Products.GetAllProducts;
 using Product.Application.Features.Products.GetProductById;
 using Product.Application.Features.Products.UpdateProduct;
@@ -72,6 +73,17 @@ namespace Product.API.Controllers
                 request.Name,
                 request.Price,
                 request.StockQuantity);
+
+            await _sender.Send(command);
+
+            return NoContent();
+        }
+
+        // Mevcut ürünü siler
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeleteProductCommand(id);
 
             await _sender.Send(command);
 

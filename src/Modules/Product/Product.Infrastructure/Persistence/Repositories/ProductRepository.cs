@@ -34,6 +34,12 @@ namespace Product.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
+        // Ürünü siler
+        public void Remove(Product.Domain.Entities.Product product)
+        {
+            _dbContext.Products.Remove(product);
+        }
+
         // Sayfalı, filtreli ve sıralı ürün listesini veritabanından getirir
         public async Task<(List<Product.Domain.Entities.Product> Items, int TotalCount)> GetPagedAsync(
             int page,
