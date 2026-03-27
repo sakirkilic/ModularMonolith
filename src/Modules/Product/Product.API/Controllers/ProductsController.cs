@@ -6,6 +6,7 @@ using Product.Application.Features.Products.DeleteProduct;
 using Product.Application.Features.Products.GetAllProducts;
 using Product.Application.Features.Products.GetProductById;
 using Product.Application.Features.Products.HardDeleteProduct;
+using Product.Application.Features.Products.RestoreProduct;
 using Product.Application.Features.Products.UpdateProduct;
 
 namespace Product.API.Controllers
@@ -96,6 +97,17 @@ namespace Product.API.Controllers
         public async Task<IActionResult> HardDelete(Guid id)
         {
             var command = new HardDeleteProductCommand(id);
+
+            await _sender.Send(command);
+
+            return NoContent();
+        }
+
+        // Silinmiş ürünü tekrar aktif hale getirir
+        [HttpPost("{id:guid}/restore")]
+        public async Task<IActionResult> Restore(Guid id)
+        {
+            var command = new RestoreProductCommand(id);
 
             await _sender.Send(command);
 
