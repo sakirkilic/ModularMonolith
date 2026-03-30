@@ -20,6 +20,10 @@ namespace Product.Infrastructure.Persistence
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductDbContext).Assembly);
 
+            // Global Query Filter
+            modelBuilder.Entity<Product.Domain.Entities.Product>()
+                .HasQueryFilter(x => !x.IsDeleted);
+
             base.OnModelCreating(modelBuilder);
         }
 

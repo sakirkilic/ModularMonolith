@@ -24,20 +24,21 @@ namespace Product.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.Products
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted, cancellationToken);
+                .FirstOrDefaultAsync(x => x.Id == id , cancellationToken);
         }
 
         // Güncelleme işlemleri için silinmemiş tracked product getirir
         public async Task<Product.Domain.Entities.Product?> GetTrackedByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Products
-                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted, cancellationToken);
+                .FirstOrDefaultAsync(x => x.Id == id , cancellationToken);
         }
 
         // Fiziksel silme işlemleri için tracked product getirir
         public async Task<Product.Domain.Entities.Product?> GetTrackedByIdIncludingDeletedAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Products
+                .IgnoreQueryFilters()  // default "x => !x.IsDeleted" siltresini görmezden gelir.
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
@@ -59,8 +60,7 @@ namespace Product.Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken)
         {
             IQueryable<Product.Domain.Entities.Product> query = _dbContext.Products
-                .AsNoTracking()
-                .Where(x => !x.IsDeleted);
+                .AsNoTracking();
 
             if (!string.IsNullOrWhiteSpace(search))
             {

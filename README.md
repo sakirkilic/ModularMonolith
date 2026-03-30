@@ -78,7 +78,7 @@ ModularMonolith/
 
 ## ⚙️ Kullanılan Teknolojiler
 
-* .NET 8
+* .NET 9
 * ASP.NET Web API
 * MediatR
 * FluentValidation
