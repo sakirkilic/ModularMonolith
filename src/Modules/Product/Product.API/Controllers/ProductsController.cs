@@ -8,6 +8,7 @@ using Product.Application.Features.Products.GetProductById;
 using Product.Application.Features.Products.HardDeleteProduct;
 using Product.Application.Features.Products.RestoreProduct;
 using Product.Application.Features.Products.UpdateProduct;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Product.API.Controllers
 {
@@ -25,6 +26,7 @@ namespace Product.API.Controllers
 
         // Ürünleri sayfalı olarak getirir
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductsRequest request)
         {
             var query = new GetAllProductsQuery(
