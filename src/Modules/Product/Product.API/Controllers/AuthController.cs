@@ -17,16 +17,20 @@ namespace Product.API.Controllers
 
         // Demo login endpoint
         [HttpPost("login")]
-        public IActionResult Login()
+        public IActionResult Login([FromBody] LoginRequest request)
         {
-            // TODO: gerçek DB kontrolü yapılacak
             var userId = Guid.NewGuid();
-            var email = "admin@test.com";
-            var role = "Admin";
+            var email = request.Email;
+            var role = request.Role;
 
             var token = _jwtService.GenerateToken(userId, email, role);
 
-            return Ok(new { token });
+            return Ok(new
+            {
+                token,
+                email,
+                role
+            });
         }
     }
 }

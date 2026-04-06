@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Product.API.Controllers
 {
     // Ürün işlemlerini yöneten controller
+    [Authorize]
     [ApiController]
     [Route("api/products")]
     public sealed class ProductsController : ControllerBase
@@ -25,8 +26,8 @@ namespace Product.API.Controllers
         }
 
         // Ürünleri sayfalı olarak getirir
+        [AllowAnonymous]
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductsRequest request)
         {
             var query = new GetAllProductsQuery(
@@ -44,6 +45,7 @@ namespace Product.API.Controllers
         }
 
         // Id'ye göre ürün getirir
+        [AllowAnonymous]
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -55,6 +57,7 @@ namespace Product.API.Controllers
         }
 
         // Yeni ürün oluşturur
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
@@ -69,6 +72,7 @@ namespace Product.API.Controllers
         }
 
         // Mevcut ürünü günceller
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request)
         {
@@ -84,6 +88,7 @@ namespace Product.API.Controllers
         }
 
         // Mevcut ürünü silinmiş olarak işaretler
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -95,6 +100,7 @@ namespace Product.API.Controllers
         }
 
         // Mevcut ürünü fiziksel olarak siler
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:guid}/hard")]
         public async Task<IActionResult> HardDelete(Guid id)
         {
@@ -107,6 +113,7 @@ namespace Product.API.Controllers
 
         // Silinmiş ürünü tekrar aktif hale getirir
         [HttpPost("{id:guid}/restore")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Restore(Guid id)
         {
             var command = new RestoreProductCommand(id);
