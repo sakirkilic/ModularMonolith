@@ -57,7 +57,7 @@ namespace Product.API.Controllers
         }
 
         // Yeni ürün oluşturur
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ManageProducts")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
@@ -72,7 +72,7 @@ namespace Product.API.Controllers
         }
 
         // Mevcut ürünü günceller
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ManageProducts")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request)
         {
@@ -88,7 +88,7 @@ namespace Product.API.Controllers
         }
 
         // Mevcut ürünü silinmiş olarak işaretler
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ManageProducts")]
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -99,8 +99,19 @@ namespace Product.API.Controllers
             return NoContent();
         }
 
+        // Silinmiş ürünü tekrar aktif hale getirir
+        [Authorize(Policy = "ManageProducts")]
+        [HttpPost("{id:guid}/restore")]
+        public async Task<IActionResult> Restore(Guid id)
+        {
+            var command = new RestoreProductCommand(id);
+
+            await _sender.Send(command);
+
+            return NoContent();
+        }
         // Mevcut ürünü fiziksel olarak siler
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "HardDeleteProducts")]
         [HttpDelete("{id:guid}/hard")]
         public async Task<IActionResult> HardDelete(Guid id)
         {
@@ -111,16 +122,5 @@ namespace Product.API.Controllers
             return NoContent();
         }
 
-        // Silinmiş ürünü tekrar aktif hale getirir
-        [HttpPost("{id:guid}/restore")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Restore(Guid id)
-        {
-            var command = new RestoreProductCommand(id);
-
-            await _sender.Send(command);
-
-            return NoContent();
-        }
     }
 }

@@ -76,7 +76,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ManageProducts", policy =>
+    {
+        policy.RequireRole("Admin");
+    });
+
+    options.AddPolicy("HardDeleteProducts", policy =>
+    {
+        policy.RequireRole("Admin");
+    });
+});
 
 builder.Services.AddProductApplication();
 builder.Services.AddProductInfrastructure(builder.Configuration);
