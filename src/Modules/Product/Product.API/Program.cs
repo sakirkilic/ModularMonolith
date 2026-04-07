@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Product.API.Middlewares;
 using Product.Application;
+using Product.Application.Security;
 using Product.Infrastructure;
 using Serilog;
 
@@ -80,12 +81,12 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ManageProducts", policy =>
     {
-        policy.RequireRole("Admin");
+        policy.RequireClaim("permission", ProductPermissions.Manage);
     });
 
     options.AddPolicy("HardDeleteProducts", policy =>
     {
-        policy.RequireRole("Admin");
+        policy.RequireClaim("permission", ProductPermissions.HardDelete);
     });
 });
 

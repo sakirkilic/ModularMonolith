@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product.Application.Abstractions.Authentication;
+using Product.Application.Security;
 
 namespace Product.API.Controllers
 {
@@ -23,14 +24,40 @@ namespace Product.API.Controllers
             var email = request.Email;
             var role = request.Role;
 
-            var token = _jwtService.GenerateToken(userId, email, role);
+            var permissions = GetPermissionsByRole(role);
+
+            var token = _jwtService.GenerateToken(userId, email, role, permissions);
 
             return Ok(new
             {
                 token,
                 email,
-                role
+                role,
+                permissions
             });
+        }
+
+        // Role'e göre permission listesini üretir
+        private static List<string> GetPermissionsByRole(string role)
+        {
+            return role switch
+            {
+                "Admin" =>
+                [
+                    ProductPermissions.Manage,
+                    ProductPermissions.HardDelete
+                ],
+
+                "ProductManager" =>
+                [
+                    ProductPermissions.Manage
+                ],
+
+                "User" => [],
+
+                _ => []
+            };
         }
     }
 }
+
