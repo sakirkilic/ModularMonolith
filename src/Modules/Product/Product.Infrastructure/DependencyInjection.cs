@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Product.Application.Abstractions.Authentication;
+using Product.Application.Abstractions.Caching;
 using Product.Application.Abstractions.Data;
 using Product.Infrastructure.Authentication;
+using Product.Infrastructure.Caching;
 using Product.Infrastructure.Persistence;
 using Product.Infrastructure.Persistence.Repositories;
 
@@ -24,6 +26,9 @@ namespace Product.Infrastructure
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+            services.AddMemoryCache();
+            services.AddScoped<ICacheService, MemoryCacheService>();
 
             return services;
         }
