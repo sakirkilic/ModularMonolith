@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Exceptions;
 using MediatR;
+using Product.Application.Abstractions.Caching;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.UpdateProduct
@@ -8,10 +9,12 @@ namespace Product.Application.Features.Products.UpdateProduct
     public sealed class UpdateProductHandler : IRequestHandler<UpdateProductCommand>
     {
         private readonly IProductRepository _productRepository;
+        private readonly ICacheService _cacheService;
 
-        public UpdateProductHandler(IProductRepository productRepository)
+        public UpdateProductHandler(IProductRepository productRepository, ICacheService cacheService)
         {
             _productRepository = productRepository;
+            _cacheService = cacheService;
         }
 
         // Ürünü günceller
@@ -43,6 +46,8 @@ namespace Product.Application.Features.Products.UpdateProduct
             }
 
             await _productRepository.SaveChangesAsync(cancellationToken);
+
+            await _cacheService.RemoveAsync($"product:{request.ProductId}");
         }
     }
 }

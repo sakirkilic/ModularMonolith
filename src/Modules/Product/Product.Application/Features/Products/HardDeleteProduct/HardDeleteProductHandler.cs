@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Exceptions;
 using MediatR;
+using Product.Application.Abstractions.Caching;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.HardDeleteProduct
@@ -8,10 +9,12 @@ namespace Product.Application.Features.Products.HardDeleteProduct
     public sealed class HardDeleteProductHandler : IRequestHandler<HardDeleteProductCommand>
     {
         private readonly IProductRepository _productRepository;
+        private readonly ICacheService _cacheService;
 
-        public HardDeleteProductHandler(IProductRepository productRepository)
+        public HardDeleteProductHandler(IProductRepository productRepository, ICacheService cacheService)
         {
             _productRepository = productRepository;
+            _cacheService = cacheService;
         }
 
         // Ürünü fiziksel olarak veritabanından siler
@@ -29,6 +32,8 @@ namespace Product.Application.Features.Products.HardDeleteProduct
             _productRepository.HardRemove(product);
 
             await _productRepository.SaveChangesAsync(cancellationToken);
+
+            await _cacheService.RemoveAsync($"product:{request.ProductId}");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Exceptions;
 using MediatR;
+using Product.Application.Abstractions.Caching;
 using Product.Application.Abstractions.Data;
 
 namespace Product.Application.Features.Products.RestoreProduct
@@ -8,10 +9,12 @@ namespace Product.Application.Features.Products.RestoreProduct
     public sealed class RestoreProductHandler : IRequestHandler<RestoreProductCommand>
     {
         private readonly IProductRepository _productRepository;
+        private readonly ICacheService _cacheService;
 
-        public RestoreProductHandler(IProductRepository productRepository)
+        public RestoreProductHandler(IProductRepository productRepository, ICacheService cacheService)
         {
             _productRepository = productRepository;
+            _cacheService = cacheService;
         }
 
         // Soft delete edilmiş ürünü tekrar aktif hale getirir
@@ -34,6 +37,8 @@ namespace Product.Application.Features.Products.RestoreProduct
             product.Restore();
 
             await _productRepository.SaveChangesAsync(cancellationToken);
+
+            await _cacheService.RemoveAsync($"product:{request.ProductId}");
         }
     }
 }
