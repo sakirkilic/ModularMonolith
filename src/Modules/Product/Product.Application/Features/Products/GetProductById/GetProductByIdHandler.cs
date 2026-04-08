@@ -15,7 +15,7 @@ namespace Product.Application.Features.Products.GetProductById
             _productRepository = productRepository;
         }
 
-        // Ürünü veritabanından getirir
+        // Ürünü veritabanından getirir.
         public async Task<ProductResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.ProductId, cancellationToken);
