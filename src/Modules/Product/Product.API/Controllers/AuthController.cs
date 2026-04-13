@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Product.Application.Abstractions.Authentication;
 using Product.Application.Security;
 
@@ -10,10 +11,12 @@ namespace Product.API.Controllers
     public sealed class AuthController : ControllerBase
     {
         private readonly IJwtTokenService _jwtService;
+        private readonly ICurrentUserService _currentUserService;
 
-        public AuthController(IJwtTokenService jwtService)
+        public AuthController(IJwtTokenService jwtService, ICurrentUserService currentUserService)
         {
             _jwtService = jwtService;
+            _currentUserService = currentUserService;
         }
 
         // Demo login endpoint
@@ -37,6 +40,16 @@ namespace Product.API.Controllers
             });
         }
 
+        // Mevcut kullanıcı bilgisini döner
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult Me()
+        {
+            var currentUser = _currentUserService.GetCurrentUser();
+
+            return Ok(currentUser);
+        }
+
         // Role'e göre permission listesini üretir
         private static List<string> GetPermissionsByRole(string role)
         {
@@ -58,6 +71,7 @@ namespace Product.API.Controllers
                 _ => []
             };
         }
+
     }
 }
 

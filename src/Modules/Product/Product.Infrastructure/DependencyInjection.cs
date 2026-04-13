@@ -26,9 +26,11 @@ namespace Product.Infrastructure
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddMemoryCache();
             services.AddScoped<ICacheService, MemoryCacheService>();
+
 
             return services;
         }

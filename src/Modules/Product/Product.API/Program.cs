@@ -90,6 +90,7 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddProductApplication();
 builder.Services.AddProductInfrastructure(builder.Configuration);
 

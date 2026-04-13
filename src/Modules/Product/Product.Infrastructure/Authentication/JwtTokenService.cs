@@ -30,7 +30,9 @@ namespace Product.Infrastructure.Authentication
             List<Claim> claims = new ()
             {
                 new(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new(ClaimTypes.NameIdentifier, userId.ToString()),
                 new(JwtRegisteredClaimNames.Email, email),
+                new(ClaimTypes.Email, email),
                 new(ClaimTypes.Role, role)
             };
 
