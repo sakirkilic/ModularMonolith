@@ -1,14 +1,18 @@
 ﻿using BuildingBlocks.Domain;
 using Microsoft.EntityFrameworkCore;
+using Product.Application.Abstractions.Authentication;
 
 namespace Product.Infrastructure.Persistence
 {
     // Product modülünün veritabanı erişim katmanı
     public sealed class ProductDbContext : DbContext
     {
-        public ProductDbContext(DbContextOptions<ProductDbContext> options)
+        private readonly ICurrentUserService _currentUserService;
+
+        public ProductDbContext(DbContextOptions<ProductDbContext> options, ICurrentUserService currentUserService)
             : base(options)
         {
+            _currentUserService = currentUserService;
         }
 
         // Product tablosunu temsil eder
@@ -38,6 +42,8 @@ namespace Product.Infrastructure.Persistence
         private void ApplyAuditInformation()
         {
             var utcNow = DateTime.UtcNow;
+            var currentUser = _currentUserService.GetCurrentUser();
+            var currentUserId = currentUser.UserId;
 
             var entries = ChangeTracker.Entries<AuditableEntity>();
 
@@ -46,11 +52,13 @@ namespace Product.Infrastructure.Persistence
                 if (entry.State == EntityState.Added)
                 {
                     entry.Entity.SetCreatedAt(utcNow);
+                    entry.Entity.SetCreatedBy(currentUserId);
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
                     entry.Entity.SetUpdatedAt(utcNow);
+                    entry.Entity.SetUpdatedBy(currentUserId);
                 }
             }
         }

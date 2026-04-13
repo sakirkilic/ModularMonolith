@@ -97,9 +97,9 @@ namespace Product.Domain.Entities
         }
 
         // Ürünü silinmiş olarak işaretler
-        public void Delete()
+        public void Delete(Guid? deletedBy)
         {
-            MarkAsDeleted(DateTime.UtcNow);
+            MarkAsDeleted(DateTime.UtcNow, deletedBy);
         }
     }
 }

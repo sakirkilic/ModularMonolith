@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Domain.Exceptions;
 using MediatR;
+using Product.Application.Abstractions.Authentication;
 using Product.Application.Abstractions.Caching;
 using Product.Application.Abstractions.Data;
 
@@ -10,11 +11,13 @@ namespace Product.Application.Features.Products.DeleteProduct
     {
         private readonly IProductRepository _productRepository;
         private readonly ICacheService _cacheService;
+        private readonly ICurrentUserService _currentUserService;
 
-        public DeleteProductHandler(IProductRepository productRepository, ICacheService cacheService)
+        public DeleteProductHandler(IProductRepository productRepository, ICacheService cacheService, ICurrentUserService currentUserService)
         {
             _productRepository = productRepository;
             _cacheService = cacheService;
+            _currentUserService = currentUserService;
         }
 
         // Ürünü silinmiş olarak işaretler
@@ -27,7 +30,9 @@ namespace Product.Application.Features.Products.DeleteProduct
                 throw new NotFoundException("Silinecek ürün bulunamadı.");
             }
 
-            product.Delete();
+            var currentUser = _currentUserService.GetCurrentUser();
+
+            product.Delete(currentUser.UserId);
 
             await _productRepository.SaveChangesAsync(cancellationToken);
 
