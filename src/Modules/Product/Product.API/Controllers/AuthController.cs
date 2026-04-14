@@ -50,28 +50,28 @@ namespace Product.API.Controllers
             return Ok(currentUser);
         }
 
-        // Role'e göre permission listesini üretir
+        // Role'e göre permission (yetki) listesini üretir
         private static List<string> GetPermissionsByRole(string role)
         {
-            return role switch
+            var normalizedRole = role.Trim().ToLowerInvariant();
+
+            return normalizedRole switch
             {
-                "Admin" =>
+                "admin" =>
                 [
                     ProductPermissions.Manage,
-                    ProductPermissions.HardDelete
+            ProductPermissions.HardDelete
                 ],
 
-                "ProductManager" =>
+                "productmanager" =>
                 [
                     ProductPermissions.Manage
                 ],
 
-                "User" => [],
+                "user" => [],
 
                 _ => []
             };
         }
-
     }
-}
 
